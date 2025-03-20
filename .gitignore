@@ -1,0 +1,5 @@
+vendor/
+auth.json
+phpunit.xml
+.env.testing
+.phpunit.cache/

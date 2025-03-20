@@ -1,0 +1,29 @@
+{
+    "name": "xbnz/laravel-auditable-users",
+    "description": "Event-sourced user login, registration, password resets",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "A. G"
+        }
+    ],
+    "require": {
+        "php": "^8.3",
+        "spatie/laravel-event-sourcing": "^7.0"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^10.0",
+        "phpunit/phpunit": "^11.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "XbNz\\LaravelAuditableUsers\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "XbNz\\LaravelAuditableUsers\\Tests\\": "tests/"
+        }
+    }
+}
