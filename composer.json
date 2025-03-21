@@ -10,20 +10,48 @@
     ],
     "require": {
         "php": "^8.3",
-        "spatie/laravel-event-sourcing": "^7.0"
+        "ext-redis": "*",
+        "laravel/framework": "^12.0",
+        "spatie/laravel-event-sourcing": "^7.0",
+        "league/pipeline": "^1.1",
+        "blade-ui-kit/blade-heroicons": "^2.6",
+        "livewire/flux": "^2.0",
+        "livewire/flux-pro": "^2.0",
+        "livewire/livewire": "^3.5",
+        "ramsey/uuid": "^4.7",
+        "webmozart/assert": "^1.11",
+        "nesbot/carbon": "^3.0",
+        "symfony/serializer": "^7.0"
     },
     "require-dev": {
         "orchestra/testbench": "^10.0",
-        "phpunit/phpunit": "^11.0"
+        "phpunit/phpunit": "^11.0",
+        "laravel/pint": "^1.0",
+        "jasonmccreary/laravel-test-assertions": "^2.6",
+        "spatie/invade": "^2.1"
     },
     "autoload": {
         "psr-4": {
-            "XbNz\\LaravelAuditableUsers\\": "src/"
+            "XbNz\\LaravelAuditableUsers\\": "src/",
+            "XbNz\\LaravelAuditableUsers\\Database\\Factories\\": "database/factories/"
         }
     },
     "autoload-dev": {
         "psr-4": {
             "XbNz\\LaravelAuditableUsers\\Tests\\": "tests/"
+        }
+    },
+    "repositories": {
+        "flux-pro": {
+            "type": "composer",
+            "url": "https://composer.fluxui.dev"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "XbNz\\LaravelAuditableUsers\\Providers\\AuditableUsersServiceProvider"
+            ]
         }
     }
 }

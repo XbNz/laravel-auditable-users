@@ -1,0 +1,43 @@
+services:
+  mysql:
+    container_name: mysql
+    image: mysql:9.2
+    platform: linux/amd64/v8
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+      MYSQL_DATABASE: ${DB_DATABASE}
+      MYSQL_USER: ${DB_USERNAME}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+    restart: always
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - auditable-network
+
+  redis:
+    container_name: redis
+    image: redis/redis-stack:latest
+    restart: always
+    networks:
+      auditable-network:
+        aliases:
+          - redis
+    volumes:
+      - redis_data:/data
+    ports:
+      - "6379:6379"
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  mysql_data:
+  redis_data:
+
+networks:
+  auditable-network:
+    driver: bridge
