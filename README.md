@@ -1,3 +1,8 @@
+![Release](https://img.shields.io/github/v/release/XbNz/laravel-auditable-users?style=for-the-badge)
+![Test suite](https://img.shields.io/github/actions/workflow/status/XbNz/laravel-auditable-users/phpunit.yml?label=Tests&logo=github&style=for-the-badge)
+![PHPStan](https://img.shields.io/github/actions/workflow/status/XbNz/laravel-auditable-users/phpstan.yml?label=PHPStan&logo=github&style=for-the-badge)
+
+
 # Laravel Auditable Users
 
 > [!WARNING]
