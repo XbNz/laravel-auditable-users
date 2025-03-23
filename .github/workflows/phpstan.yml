@@ -1,0 +1,33 @@
+name: Run PHPStan
+
+on:
+  push:
+    paths:
+      - '**.php'
+  pull_request:
+    paths:
+      - '**.php'
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.4'
+          extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, bcmath, soap, intl, gd, exif, iconv, imagick, fileinfo
+          coverage: none
+
+      - name: Install dependencies
+        run: |
+          composer config http-basic.composer.fluxui.dev "${{ secrets.FLUXUI_USERNAME }}" "${{ secrets.FLUXUI_LICENCE_KEY }}"
+          composer install --prefer-dist --no-interaction
+
+      - name: Execute PHPStan
+        run: |
+          php vendor/bin/phpstan analyse --memory-limit=1G --no-progress --no-ansi --no-interaction
