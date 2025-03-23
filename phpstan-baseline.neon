@@ -1,0 +1,37 @@
+parameters:
+	ignoreErrors:
+		-
+			message: '#^Property XbNz\\LaravelAuditableUsers\\Livewire\\Login\:\:\$guard \(Illuminate\\Auth\\SessionGuard\) does not accept Illuminate\\Contracts\\Auth\\Guard\.$#'
+			identifier: assign.propertyType
+			count: 1
+			path: src/Livewire/Login.php
+
+		-
+			message: '#^Method XbNz\\LaravelAuditableUsers\\Normalizers\\RamseyUuidNormalizer\:\:denormalize\(\) has parameter \$context with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Normalizers/RamseyUuidNormalizer.php
+
+		-
+			message: '#^Method XbNz\\LaravelAuditableUsers\\Normalizers\\RamseyUuidNormalizer\:\:normalize\(\) has parameter \$context with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Normalizers/RamseyUuidNormalizer.php
+
+		-
+			message: '#^Method XbNz\\LaravelAuditableUsers\\Normalizers\\RamseyUuidNormalizer\:\:supportsDenormalization\(\) has parameter \$context with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Normalizers/RamseyUuidNormalizer.php
+
+		-
+			message: '#^Method XbNz\\LaravelAuditableUsers\\Normalizers\\RamseyUuidNormalizer\:\:supportsNormalization\(\) has parameter \$context with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Normalizers/RamseyUuidNormalizer.php
+
+		-
+			message: '#^Call to an undefined method Illuminate\\Database\\Eloquent\\Collection\<int, XbNz\\LaravelAuditableUsers\\Projections\\User\>\|XbNz\\LaravelAuditableUsers\\Projections\\User\:\:writeable\(\)\.$#'
+			identifier: method.notFound
+			count: 3
+			path: src/Projectors/UserProjector.php
