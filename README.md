@@ -8,9 +8,6 @@
 > [!WARNING]
 > Please do not use this package if you do not have a full understanding of event sourcing. You **will** need to modify things to fit your needs. Feel free to fork or contribute when your needs outgrow this package.
 
-> [!NOTE]
-> You may use the Laravel starter kit [here]()
-
 > [!NOTE] 
 > You will need redis installed and configured to use this package
 

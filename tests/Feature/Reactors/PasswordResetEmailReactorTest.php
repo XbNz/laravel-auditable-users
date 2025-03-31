@@ -7,8 +7,11 @@ namespace XbNz\LaravelAuditableUsers\Tests\Feature\Reactors;
 use Carbon\CarbonImmutable;
 use Illuminate\Contracts\Hashing\Hasher;
 use Illuminate\Contracts\Routing\UrlGenerator;
+use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Mail;
+use League\Uri\QueryString;
+use League\Uri\Uri;
 use Ramsey\Uuid\Uuid;
 use Spatie\EventSourcing\Projectionist;
 use Spatie\EventSourcing\StoredEvents\ShouldBeStored;
@@ -65,8 +68,19 @@ final class PasswordResetEmailReactorTest extends TestCase
         $this->assertTrue($event->userUuid->equals($targetEvent->userUuid));
         Mail::assertSentCount(1);
         Mail::assertSent(function (ResetMail $mail) use ($event, $expectedSignedUrl) {
+            $mailedUrl = Uri::fromBaseUri(invade($mail)->viewModel->resetUrl);
+            $expectedSignedUrl = Uri::fromBaseUri($expectedSignedUrl);
+
+            $mailedUrlParams = QueryString::extractFromValue($mailedUrl->getQuery());
+            $expectedSignedUrlParams = QueryString::extractFromValue($expectedSignedUrl->getQuery());
+
+            $validSignature = Request::create(uri: $mailedUrl->getPath(), parameters: $mailedUrlParams)->hasValidSignature();
+
             return $mail->hasTo($event->email)
-                && invade($mail)->viewModel->resetUrl === $expectedSignedUrl;
+                && $mailedUrlParams['token'] === $expectedSignedUrlParams['token']
+                && CarbonImmutable::createFromTimestamp($expectedSignedUrlParams['expires'])
+                    ->isSameMinute(CarbonImmutable::createFromTimestamp($expectedSignedUrlParams['expires']))
+                && $validSignature;
         });
     }
 

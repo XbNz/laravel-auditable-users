@@ -21,7 +21,8 @@
         "ramsey/uuid": "^4.7",
         "webmozart/assert": "^1.11",
         "nesbot/carbon": "^3.0",
-        "symfony/serializer": "^7.0"
+        "symfony/serializer": "^7.0",
+        "league/uri": "^7.5"
     },
     "require-dev": {
         "orchestra/testbench": "^10.0",
